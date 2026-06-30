@@ -79,10 +79,10 @@ export async function onRequestPost(context) {
       r.status === 401 || r.status === 403
         ? "Invalid or missing LLM_API_KEY."
         : r.status === 404
-        ? `The provider has no model "${MODEL}". Set a valid LLM_MODEL.`
-        : r.status === 429
-        ? "Rate limit reached on the free tier — wait a moment and retry."
-        : "Upstream provider error.";
+          ? `The provider has no model "${MODEL}". Set a valid LLM_MODEL.`
+          : r.status === 429
+            ? "Rate limit reached on the free tier — wait a moment and retry."
+            : "Upstream provider error.";
     return json({ error: hint, status: r.status }, 502);
   }
 
@@ -97,6 +97,6 @@ export async function onRequestPost(context) {
     }
     return json(parsed, 200);
   } catch {
-    return json({ error: "The model didn't return valid JSON. Try again." }, 502);
+    return json({ error: "Sorry, something wrong happened with model :( Try again." }, 502);
   }
 }

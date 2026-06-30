@@ -1,12 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { AuraData } from "./types";
 
-const PRESETS = [
-  "dark academia",
-  "matcha morning",
-  "cherry blossom",
-  "cottagecore",
-];
+const PRESETS = ["dark academia", "matcha morning", "cherry blossom", "cottagecore"];
 
 const FALLBACK: AuraData = {
   name: "Stillness",
@@ -70,58 +65,117 @@ export default function Aura() {
   const words = data.tagline.split(" ");
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden text-white select-none">
+    <div className="relative h-dvh w-full overflow-hidden select-none text-white">
       {/* Living aura — original look */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="au-orb" style={{ background: a, width: "55%", height: "55%", top: "-10%", left: "-8%", animation: "drift1 14s ease-in-out infinite" }} />
-        <div className="au-orb" style={{ background: c, width: "50%", height: "50%", top: "20%", right: "-12%", animation: "drift2 17s ease-in-out infinite" }} />
-        <div className="au-orb" style={{ background: d, width: "45%", height: "45%", bottom: "-12%", left: "20%", animation: "drift3 20s ease-in-out infinite" }} />
-        <div className="au-orb" style={{ background: b, width: "38%", height: "38%", bottom: "5%", right: "8%", animation: "drift1 16s ease-in-out infinite", opacity: 0.6 }} />
+        <div
+          className="au-orb"
+          style={{
+            background: a,
+            width: "55%",
+            height: "55%",
+            top: "-10%",
+            left: "-8%",
+            animation: "drift1 14s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="au-orb"
+          style={{
+            background: c,
+            width: "50%",
+            height: "50%",
+            top: "20%",
+            right: "-12%",
+            animation: "drift2 17s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="au-orb"
+          style={{
+            background: d,
+            width: "45%",
+            height: "45%",
+            bottom: "-12%",
+            left: "20%",
+            animation: "drift3 20s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="au-orb"
+          style={{
+            background: b,
+            width: "38%",
+            height: "38%",
+            bottom: "5%",
+            right: "8%",
+            animation: "drift1 16s ease-in-out infinite",
+            opacity: 0.6,
+          }}
+        />
       </div>
       <div className="absolute inset-0 bg-[#0a0a12]/35" aria-hidden="true" />
 
       {/* Tiny brand label, top center */}
-      <div className="absolute left-0 right-0 top-6 z-10 text-center" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>
+      <div
+        className="absolute left-0 right-0 top-4 z-10 text-center sm:top-6"
+        style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}
+      >
         <span className="uppercase text-white/60">Aura</span>
         <span className="text-white/45"> · aesthetic generator</span>
       </div>
 
       {/* Everything centered as one group */}
-      <main className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-6 py-20 text-center">
+      <main className="relative z-10 flex h-full w-full flex-col items-center justify-center px-5 py-8 text-center sm:px-6 sm:py-20">
         <div className="flex w-full max-w-2xl flex-col items-center" key={revealKey}>
-          <div className="au-fade mb-3 uppercase text-white/55" style={{ fontSize: "0.75rem", letterSpacing: "0.3em", animationDelay: "0ms" }}>
+          <div
+            className="au-fade mb-3 uppercase text-white/55"
+            style={{ fontSize: "0.75rem", letterSpacing: "0.3em", animationDelay: "0ms" }}
+          >
             {data.name}
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl" style={{ lineHeight: 1.08, textShadow: "0 2px 24px rgba(0,0,0,.55)" }}>
+          <h1
+            className="font-serif text-3xl sm:text-4xl md:text-6xl"
+            style={{ lineHeight: 1.08, textShadow: "0 2px 24px rgba(0,0,0,.55)" }}
+          >
             {words.map((w, i) => (
-              <span key={i} className="au-word" style={{ display: "inline-block", marginRight: "0.28em", animationDelay: `${120 + i * 90}ms` }}>
+              <span
+                key={i}
+                className="au-word"
+                style={{ display: "inline-block", marginRight: "0.28em", animationDelay: `${120 + i * 90}ms` }}
+              >
                 {w}
               </span>
             ))}
           </h1>
 
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
+          <div className="mt-4 flex flex-wrap justify-center gap-2 sm:mt-6">
             {data.keywords.map((k, i) => (
-              <span key={k} className="au-fade rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm backdrop-blur" style={{ animationDelay: `${500 + i * 110}ms`, textShadow: "0 1px 8px rgba(0,0,0,.4)" }}>
+              <span
+                key={k}
+                className="au-fade rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm backdrop-blur"
+                style={{ animationDelay: `${500 + i * 110}ms`, textShadow: "0 1px 8px rgba(0,0,0,.4)" }}
+              >
                 {k}
               </span>
             ))}
           </div>
 
-<div
-  className="mt-6 grid w-full grid-cols-2 gap-2 sm:flex sm:h-24 sm:items-end"
-  key={"p" + revealKey}
->
-  {data.palette.map((hex, i) => (
-    <button
-      key={hex + i}
-      onClick={copyPalette}
-      className={`
+          <div
+            className="mt-4 grid w-full grid-cols-2 gap-2 sm:mt-6 sm:flex sm:h-24 sm:items-end"
+            key={"p" + revealKey}
+          >
+            {data.palette.map((hex, i) => (
+              <button
+                key={hex + i}
+                onClick={copyPalette}
+                className={`
         au-swatch
         flex
-        h-16
-        items-end
-        rounded-xl
+        h-14
+items-end
+rounded-xl
+sm:h-full
         p-2
         transition-transform
         hover:scale-105
@@ -129,37 +183,37 @@ export default function Aura() {
         sm:flex-1
         ${i === data.palette.length - 1 ? "col-span-2" : ""}
       `}
-      style={{
-        background: hex,
-        animationDelay: `${i * 80}ms`,
-        boxShadow: "0 8px 30px rgba(0,0,0,.35)",
-      }}
-      title="Copy palette"
-    >
-      <span className="rounded bg-black/40 px-1 py-0.5 font-mono text-[9px] text-white/90 sm:text-[10px]">
-        {hex.toUpperCase()}
-      </span>
-    </button>
-  ))}
-</div>
+                style={{
+                  background: hex,
+                  animationDelay: `${i * 80}ms`,
+                  boxShadow: "0 8px 30px rgba(0,0,0,.35)",
+                }}
+                title="Copy palette"
+              >
+                <span className="rounded bg-black/40 px-1 py-0.5 font-mono text-[9px] text-white/90 sm:text-[10px]">
+                  {hex.toUpperCase()}
+                </span>
+              </button>
+            ))}
+          </div>
 
           {/* Controls */}
-          <div className="mt-5 w-full space-y-3">
+          <div className="mt-4 w-full space-y-2 sm:mt-5 sm:space-y-3">
             {error && <p className="text-sm text-rose-200">{error}</p>}
-<div className="flex items-stretch gap-2">
-  <input
-    ref={inputRef}
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    onKeyDown={(e) => e.key === "Enter" && generate()}
-    placeholder="Enter a mood…"
-    className="
+            <div className="flex items-stretch gap-2">
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && generate()}
+                placeholder="Enter a mood…"
+                className="
       min-w-0
       flex-1
       rounded-xl
       border border-white/15
       bg-white/10
-      px-4 py-3
+px-4 py-2.5 sm:py-3
       text-white
       outline-none
       backdrop-blur
@@ -167,12 +221,12 @@ export default function Aura() {
       placeholder:text-white/40
       focus:border-white/40
     "
-  />
+              />
 
-  <button
-    onClick={()=>generate()}
-    disabled={loading || !input.trim()}
-className="
+              <button
+                onClick={() => generate()}
+                disabled={loading || !input.trim()}
+                className="
   flex
   min-w-[52px]
   items-center
@@ -180,8 +234,9 @@ className="
   rounded-xl
   border border-white/15
   bg-white/10
-  px-4
-  py-3
+px-4
+py-2.5
+sm:py-3
   font-medium
   text-white
   backdrop-blur
@@ -195,28 +250,50 @@ className="
   sm:min-w-[120px]
   sm:px-6
 "
-  >
-    {loading ? (
-            <span className="animate-pulse text-lg">✦</span>
-    ) : copied ? (
-      <>
-        <span className="sm:hidden">✓</span>
-        <span className="hidden sm:inline">Copied ✓</span>
-      </>
-    ) : (
-      <>
-        <span className="sm:hidden">✨</span>
-        <span className="hidden sm:inline">Create</span>
-      </>
-    )}
-  </button>
-</div>
-            <div className="flex flex-wrap justify-center gap-2 pt-1">
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <span className="flex gap-1">
+                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white [animation-delay:-0.3s]" />
+                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white [animation-delay:-0.15s]" />
+                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white" />
+                    </span>
+                  </div>
+                ) : copied ? (
+                  <>
+                    <span className="sm:hidden">✓</span>
+                    <span className="hidden sm:inline">Copied ✓</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="sm:hidden">✨</span>
+                    <span className="hidden sm:inline">Create</span>
+                  </>
+                )}
+              </button>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2 pt-0.5 sm:pt-1">
               {PRESETS.map((p) => (
                 <button
                   key={p}
-                  onClick={() => { setInput(p); generate(p); }}
-                  className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/60 transition-colors hover:border-white/30 hover:text-white"
+                  disabled={loading}
+                  onClick={() => {
+                    setInput(p);
+                    generate(p);
+                  }}
+                  className="
+  rounded-full
+  border
+  border-white/10
+  px-3
+  py-1.5
+  text-xs
+  text-white/60
+  transition-colors
+  hover:border-white/30
+  hover:text-white
+  disabled:cursor-not-allowed
+"
                 >
                   {p}
                 </button>
@@ -226,11 +303,15 @@ className="
         </div>
       </main>
 
-            <div className="absolute left-0 right-0 bottom-6 z-10 text-center" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>
+      <div
+        className="absolute left-0 right-0 bottom-4 z-10 text-center sm:bottom-6"
+        style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}
+      >
         <div className="uppercase text-white/60">made by Alina Luzanova</div>
-        <a href="https://github.com/AlinaLuzanova" target="_blank" rel="noopener noreferrer" className="text-white/45">join my gitHub</a>
+        <a href="https://github.com/AlinaLuzanova" target="_blank" rel="noopener noreferrer" className="text-white/45">
+          join my gitHub
+        </a>
       </div>
-
     </div>
   );
 }

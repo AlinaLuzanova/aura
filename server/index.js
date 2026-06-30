@@ -81,10 +81,10 @@ app.post("/api/generate", async (req, res) => {
       r.status === 401 || r.status === 403
         ? "Invalid or missing LLM_API_KEY in .env."
         : r.status === 404
-        ? `The provider has no model "${MODEL}". Set a valid LLM_MODEL (e.g. llama-3.3-70b-versatile on Groq).`
-        : r.status === 429
-        ? "Rate limit reached on the free tier — wait a moment and retry."
-        : "Upstream provider error.";
+          ? `The provider has no model "${MODEL}". Set a valid LLM_MODEL (e.g. llama-3.3-70b-versatile on Groq).`
+          : r.status === 429
+            ? "Rate limit reached on the free tier — wait a moment and retry."
+            : "Upstream provider error.";
     return res.status(502).json({ error: hint, status: r.status });
   }
 

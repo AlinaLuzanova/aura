@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Aura — генератор эстетики на базе Claude. Введи настроение, получи палитру, слоган и ключевые слова.",
   "scripts": {
+    "format": "prettier . --write",
     "dev": "concurrently -n web,api -c cyan,magenta \"vite\" \"node server/index.js\"",
     "server": "node server/index.js",
     "build": "tsc && vite build",
@@ -24,6 +25,7 @@
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "postcss": "^8.4.40",
+    "prettier": "^3.9.4",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.3",
     "vite": "^5.3.4"
