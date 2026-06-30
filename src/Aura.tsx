@@ -363,7 +363,7 @@ sm:py-3
           </div>
         )}
         {tab === "catalog" && (
-          <div className="flex max-h-[70vh] w-full max-w-2xl flex-col gap-3 overflow-y-auto py-2">
+          <div className="aura-scroll flex max-h-[70vh] w-full max-w-2xl flex-col gap-3 overflow-y-auto py-2">
             {catalog.length === 0 && <p className="text-sm text-white/50">Oops! You don't have any saved pallete.</p>}
             {catalog.map((item, idx) => (
               <button

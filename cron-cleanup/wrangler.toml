@@ -1,0 +1,11 @@
+name = "aura-catalog-cleanup"
+main = "index.js"
+compatibility_date = "2026-06-30"
+
+[triggers]
+crons = ["0 3 1 * *"]   # в 03:00 первого числа каждого месяца
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aura-catalog"
+database_id = "a1ac80ff-81ee-4287-9acd-d1ae7b0955b1"
