@@ -100,7 +100,7 @@ app.post("/api/generate", async (req, res) => {
     res.json(parsed);
   } catch (e) {
     console.error("[parse]", String(e));
-    res.status(502).json({ error: "Sorry, something wrong happened with model :(r Try again." });
+    res.status(502).json({ error: "Sorry, something wrong happened with model :( Try again." });
   }
 });
 

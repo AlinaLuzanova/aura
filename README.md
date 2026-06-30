@@ -1,54 +1,9 @@
-# Aura — генератор эстетики
+# Aura — Aesthetic Generator
 
-Введи настроение («осенний лес», «киберпанк», «глубокий космос») — и приложение
-сгенерирует под него цветовую палитру, поэтичный слоган и ключевые слова.
-Интерфейс анимированно оживает: живой фон из плывущих орбов, кинетическая
-типографика, поочерёдное появление свотчей палитры.
+Aura transforms a single mood into a complete visual identity.
 
-## Стек
+Enter a prompt like **"autumn forest," "cyberpunk,"** or **"deep space,"** and the app generates a curated color palette, a poetic tagline, and a collection of evocative keywords that capture the atmosphere.
 
-- React 18 + TypeScript + Vite
-- Tailwind CSS
-- Express — лёгкий прокси, чтобы ключ провайдера никогда не попадал в браузер
-- Любой OpenAI-совместимый эндпоинт с бесплатными токенами (FreeLLMAPI, Groq, OpenRouter и т.п.)
+The experience is designed to feel immersive rather than static. A living background of drifting orbs, kinetic typography, and staggered palette animations make every generation feel unique and alive.
 
-## Запуск
-
-```bash
-# 1. Установить зависимости (нужен Node 18+)
-npm install
-
-# 2. Прописать ключ
-cp .env.example .env
-# вставь бесплатный ключ Groq (console.groq.com/keys) в LLM_API_KEY
-
-# 3. Запустить фронтенд + бэкенд одной командой
-npm run dev
-```
-
-Фронтенд поднимется на http://localhost:5173, бэкенд-прокси — на :8787.
-Vite проксирует запросы `/api/*` на бэкенд автоматически.
-
-## Сборка
-
-```bash
-npm run build     # типизация + продакшен-сборка фронта в dist/
-npm run preview   # локальный предпросмотр сборки
-```
-
-## Структура
-
-```
-aura/
-├─ server/
-│  └─ index.js        # Express-прокси к LLM API
-├─ src/
-│  ├─ Aura.tsx        # главный компонент с анимациями
-│  ├─ types.ts        # тип ответа модели
-│  ├─ main.tsx        # точка входа
-│  └─ index.css       # Tailwind + keyframes ауры
-├─ index.html
-├─ tailwind.config.js
-├─ vite.config.ts
-└─ .env.example
-```
+**Live demo:** https://aura-p3p.pages.dev/

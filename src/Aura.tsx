@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import type { AuraData } from "./types";
 
-const PRESETS = ["autumn forest", "cyberpunk", "quiet sunrise", "deep space", "vintage café"];
+const PRESETS = [
+  "dark academia",
+  "matcha morning",
+  "cherry blossom",
+  "cottagecore",
+];
 
 const FALLBACK: AuraData = {
   name: "Stillness",
@@ -103,43 +108,109 @@ export default function Aura() {
             ))}
           </div>
 
-          {/* Palette */}
-          <div className="mt-10 flex h-24 w-full items-end gap-2" key={"p" + revealKey}>
-            {data.palette.map((hex, i) => (
-              <button
-                key={hex + i}
-                onClick={copyPalette}
-                className="au-swatch flex h-full flex-1 cursor-pointer items-end rounded-xl p-2 transition-transform hover:scale-105"
-                style={{ background: hex, animationDelay: `${i * 80}ms`, boxShadow: "0 8px 30px rgba(0,0,0,.35)" }}
-                title="Copy palette"
-              >
-                <span className="rounded bg-black/40 px-1.5 py-0.5 font-mono text-white/90" style={{ fontSize: "10px" }}>
-                  {hex.toUpperCase()}
-                </span>
-              </button>
-            ))}
-          </div>
+<div
+  className="mt-6 grid w-full grid-cols-2 gap-2 sm:flex sm:h-24 sm:items-end"
+  key={"p" + revealKey}
+>
+  {data.palette.map((hex, i) => (
+    <button
+      key={hex + i}
+      onClick={copyPalette}
+      className={`
+        au-swatch
+        flex
+        h-16
+        items-end
+        rounded-xl
+        p-2
+        transition-transform
+        hover:scale-105
+        sm:h-full
+        sm:flex-1
+        ${i === data.palette.length - 1 ? "col-span-2" : ""}
+      `}
+      style={{
+        background: hex,
+        animationDelay: `${i * 80}ms`,
+        boxShadow: "0 8px 30px rgba(0,0,0,.35)",
+      }}
+      title="Copy palette"
+    >
+      <span className="rounded bg-black/40 px-1 py-0.5 font-mono text-[9px] text-white/90 sm:text-[10px]">
+        {hex.toUpperCase()}
+      </span>
+    </button>
+  ))}
+</div>
 
           {/* Controls */}
           <div className="mt-5 w-full space-y-3">
             {error && <p className="text-sm text-rose-200">{error}</p>}
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && generate()}
-                placeholder="Enter a mood…"
-                className="flex-1 rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-left text-white outline-none backdrop-blur transition-colors placeholder:text-white/40 focus:border-white/40"
-              />
-              <button
-                onClick={() => generate()}
-                disabled={loading || !input.trim()}
-                className="whitespace-nowrap rounded-xl bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {loading ? "Creating…" : copied ? "Copied ✓" : "Create"}
-              </button>
-            </div>
+<div className="flex items-stretch gap-2">
+  <input
+    ref={inputRef}
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    onKeyDown={(e) => e.key === "Enter" && generate()}
+    placeholder="Enter a mood…"
+    className="
+      min-w-0
+      flex-1
+      rounded-xl
+      border border-white/15
+      bg-white/10
+      px-4 py-3
+      text-white
+      outline-none
+      backdrop-blur
+      transition-colors
+      placeholder:text-white/40
+      focus:border-white/40
+    "
+  />
+
+  <button
+    onClick={()=>generate()}
+    disabled={loading || !input.trim()}
+className="
+  flex
+  min-w-[52px]
+  items-center
+  justify-center
+  rounded-xl
+  border border-white/15
+  bg-white/10
+  px-4
+  py-3
+  font-medium
+  text-white
+  backdrop-blur
+  transition-all
+  hover:scale-[1.02]
+  hover:border-white/30
+  hover:bg-white/15
+  active:scale-[0.98]
+  disabled:cursor-not-allowed
+  disabled:opacity-40
+  sm:min-w-[120px]
+  sm:px-6
+"
+  >
+    {loading ? (
+            <span className="animate-pulse text-lg">✦</span>
+    ) : copied ? (
+      <>
+        <span className="sm:hidden">✓</span>
+        <span className="hidden sm:inline">Copied ✓</span>
+      </>
+    ) : (
+      <>
+        <span className="sm:hidden">✨</span>
+        <span className="hidden sm:inline">Create</span>
+      </>
+    )}
+  </button>
+</div>
             <div className="flex flex-wrap justify-center gap-2 pt-1">
               {PRESETS.map((p) => (
                 <button
