@@ -23,16 +23,24 @@ export default function Aura() {
   const [saved, setSaved] = useState(false);
   const [hasResult, setHasResult] = useState(false);
 
+  async function loadCatalog(fresh = false) {
+    const url = fresh ? `/api/catalog?t=${Date.now()}` : "/api/catalog";
+    try {
+      const r = await fetch(url, fresh ? { cache: "no-store" } : {});
+      const d = await r.json();
+      setCatalog(Array.isArray(d) ? d : []);
+    } catch {
+      setCatalog([]);
+    }
+  }
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
     if (tab !== "catalog") return;
-    fetch("/api/catalog")
-      .then((r) => r.json())
-      .then(setCatalog)
-      .catch(() => {});
+    loadCatalog();
   }, [tab]);
 
   async function generate(prompt?: string) {
@@ -69,7 +77,7 @@ export default function Aura() {
   }
 
   async function save() {
-    if (loading) return;
+    if (loading || !hasResult) return;
     try {
       await fetch("/api/catalog", {
         method: "POST",
@@ -78,6 +86,7 @@ export default function Aura() {
       });
       setSaved(true);
       setTimeout(() => setSaved(false), 1600);
+      loadCatalog(true);
     } catch {
       /* ignore */
     }

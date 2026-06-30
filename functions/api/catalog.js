@@ -14,7 +14,12 @@ export async function onRequestGet({ env }) {
     created_at: r.created_at,
   }));
 
-  return Response.json(items);
+  return new Response(JSON.stringify(items), {
+    headers: {
+      "content-type": "application/json",
+      "cache-control": "public, max-age=30",
+    },
+  });
 }
 
 // POST /api/catalog — сохранить ауру
