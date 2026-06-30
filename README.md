@@ -6,4 +6,5 @@ Enter a prompt like **"autumn forest," "cyberpunk,"** or **"deep space,"** and t
 
 The experience is designed to feel immersive rather than static. A living background of drifting orbs, kinetic typography, and staggered palette animations make every generation feel unique and alive.
 
+
 **Live demo:** https://aura-p3p.pages.dev/

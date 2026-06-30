@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS auras (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  mood TEXT NOT NULL,
+  name TEXT NOT NULL,
+  tagline TEXT NOT NULL,
+  palette TEXT NOT NULL,    
+  keywords TEXT NOT NULL,  
+  created_at INTEGER NOT NULL
+);
